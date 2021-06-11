@@ -1,0 +1,18 @@
+<html
+        lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+    <body>
+        <div sec:authorize="isAuthenticated()">
+            <p>You are logged in!</p>
+            <p>Available claims:</p>
+            <p th:text="${claimsKeys}"></p>
+            <p>Name:</p>
+            <p th:text="${profile.get('name')}"></p>
+            <p>Email:</p>
+            <p th:text="${profile.get('email')}"></p>
+            <a th:href="@{/logout}">Log Out</a>
+        </div>
+    </body>
+</html>

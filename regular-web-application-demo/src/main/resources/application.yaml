@@ -1,0 +1,36 @@
+server:
+  port: 3002
+  error:
+    include-exception: true
+    include-message: ALWAYS
+    include-stacktrace: ALWAYS
+
+logging:
+  level:
+    org.gradle.launcher.cli.DebugLoggerWarningAction: DEBUG
+    org.springframework.security.oauth2: DEBUG
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          auth0:
+            client-id: ${AUTH0_CLIENT_ID}
+            client-secret: ${AUTH0_CLIENT_SECRET}
+            authorization-grant-type: authorization_code
+            scope:
+              - openid
+              - profile
+              - email
+              - read:messages
+        provider:
+          auth0:
+            issuer-uri: ${AUTH0_ISSUER}
+
+logout:
+  returnTo: http://localhost:3002/
+
+demoapi:
+  url: http://localhost:3001
+  audience: http://localhost:3001/api
