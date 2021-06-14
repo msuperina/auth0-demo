@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '2.2.6.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'com.google.cloud.tools.jib' version '3.1.1'
 }
 
 group = 'com.auth0'
@@ -18,4 +19,24 @@ dependencies {
     implementation 'org.springframework.security:spring-security-config'
     implementation 'org.springframework.security:spring-security-oauth2-resource-server'
     implementation 'org.springframework.security:spring-security-oauth2-jose'
+}
+
+jib {
+    from {
+        image = 'openjdk:16-jdk-alpine3.13'
+    }
+    to {
+        image = 'msuperina/auth0-api-webflux-demo'
+        tags = ['0.0.1']
+        auth {
+            def dockerUserFile = file('.docker.json')
+            def jsonSplurper = new groovy.json.JsonSlurper()
+            def dockerUser = jsonSplurper.parse(dockerUserFile)
+            username = dockerUser.username
+            password = dockerUser.password
+        }
+    }
+    container {
+        ports = ['3001']
+    }
 }
