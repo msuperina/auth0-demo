@@ -1,0 +1,13 @@
+apiVersion: k3d.io/v1alpha2
+kind: Simple
+name: democluster
+
+agents: 2
+
+kubeAPI:
+  hostPort: "6550"
+
+ports:
+  - port: 8080:80
+    nodeFilters:
+      - loadbalancer
