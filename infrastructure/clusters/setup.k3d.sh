@@ -15,10 +15,10 @@ kubectl wait -n argocd --for=condition=Ready pod -l app.kubernetes.io/name=argoc
 # http://localhost:8081
 # kubectl port-forward svc/argocd-server -n argocd 8081:443
 
-/c/dev/programs/argocd-windows-amd64.exe app create auth0-demo \
-  --repo https://github.com/msuperina/auth0-demo.git \
-  --revision feat-dockerhub-k3d-argocd \
-  --path charts/api-webflux-demo \
-  --dest-server https://kubernetes.default.svc \
-  --dest-namespace default \
-  --sync-policy automated
+# /c/dev/programs/argocd-windows-amd64.exe app create auth0-api-webflux-demo \
+#   --repo https://github.com/msuperina/auth0-demo.git \
+#   --revision feat-dockerhub-k3d-argocd \
+#   --path infrastructure/charts/api-webflux-demo \
+#   --dest-server https://kubernetes.default.svc \
+#   --dest-namespace default \
+#   --sync-policy automated
