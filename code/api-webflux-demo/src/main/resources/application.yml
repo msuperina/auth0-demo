@@ -5,6 +5,13 @@ server:
     include-message: ALWAYS
     include-stacktrace: ALWAYS
 
+management:
+  endpoints:
+    web:
+      base-path: "/"
+      path-mapping:
+        health: "health"
+
 spring:
   security:
     oauth2:

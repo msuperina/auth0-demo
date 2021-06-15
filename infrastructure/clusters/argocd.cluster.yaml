@@ -1,11 +1,11 @@
 apiVersion: k3d.io/v1alpha2
 kind: Simple
-name: democluster
+name: argocd
 
-agents: 2
+agents: 1
 
 kubeAPI:
-  hostPort: "6550"
+  hostPort: "6551"
 
 ports:
   - port: 8080:80

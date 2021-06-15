@@ -8,13 +8,13 @@ spec:
   source:
     repoURL: https://github.com/msuperina/auth0-demo.git
     targetRevision: feat-dockerhub-k3d-argocd
-    path: infrastructure/charts/api-webflux-demo
+    path: charts/api-webflux-demo
+    helm:
+      parameters:
+      - name: AUTH0_ISSUER
+        value: https://dev-flidg5q0.eu.auth0.com/
+      - name: API_AUDIENCE
+        value: http://localhost:3001/api
   destination:
-    server: https://kubernetes.default.svc
+    server: https://0.0.0.0:6552
     namespace: api-demo
-  helm:
-    parameters:
-    - name: AUTH0_ISSUER
-      value: https://dev-flidg5q0.eu.auth0.com/
-    - name: API_AUDIENCE
-      value: http://localhost:3001/api

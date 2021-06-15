@@ -1,0 +1,13 @@
+apiVersion: k3d.io/v1alpha2
+kind: Simple
+name: apidemo
+
+agents: 2
+
+kubeAPI:
+  hostPort: "6552"
+
+ports:
+  - port: 3001:3001
+    nodeFilters:
+      - loadbalancer

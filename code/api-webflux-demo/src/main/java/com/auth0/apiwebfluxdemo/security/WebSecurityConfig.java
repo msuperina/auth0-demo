@@ -2,6 +2,7 @@ package com.auth0.apiwebfluxdemo.security;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
@@ -29,7 +30,9 @@ class WebSecurityConfig {
     public SecurityWebFilterChain securityWebFilterChain(final ServerHttpSecurity http) {
         return http
                 .cors()
-                .and().authorizeExchange().anyExchange().authenticated()
+                .and().authorizeExchange()
+                    .pathMatchers(HttpMethod.GET, "/health/**").permitAll()
+                    .anyExchange().authenticated()
                 .and().oauth2ResourceServer().jwt().and()
                 .and().build();
     }
